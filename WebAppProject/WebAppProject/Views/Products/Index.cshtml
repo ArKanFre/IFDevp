@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WebAppProject.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Novo Produto", "Create")
+</p>
+<table id="productTable" class="table">
+    <thead>
+        <tr>            
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Preco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categoria.NomeCategoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fornecedor.NomeFornecedor)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+@foreach (var item in Model) {
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria.NomeCategoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fornecedor.NomeFornecedor)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    </tbody>
+}
+
+</table>
+
+@* Parte do script para DataTables *@
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#productTable').DataTable();
+        });
+    </script>
+}

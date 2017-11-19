@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WebAppProject.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Nova Categoria", "Create")
+</p>
+<table id="categoryTable" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeCategoria)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+@foreach (var item in Model) {
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeCategoria)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CategoriaId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CategoriaId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CategoriaId })
+            </td>
+        </tr>
+    </tbody>
+}
+
+</table>
+
+@* Parte do script para DataTables *@
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#categoryTable').DataTable();
+        });
+    </script>
+}

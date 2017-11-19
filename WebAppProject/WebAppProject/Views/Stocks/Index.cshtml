@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WebAppProject.Models.Stock>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="stockTable" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantidade)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+@foreach (var item in Model) {
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Produto.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    </tbody>
+}
+
+</table>
+
+@* Parte do script para DataTables *@
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#stockTable').DataTable();
+        });
+    </script>
+}
