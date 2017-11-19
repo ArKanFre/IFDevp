@@ -19,6 +19,7 @@ namespace WebAppProject.Models
         public String NomeFornecedor { get; set; }
 
         [Required(ErrorMessage = "O campo data de inclusão é obrigatório!")]
+        [DisplayName("Data de Inclusão")]
         public DateTime DataInclusao { get; set; }
 
         /*A ação abaixo faz com que carrega os dados do produto em modo LAZY,

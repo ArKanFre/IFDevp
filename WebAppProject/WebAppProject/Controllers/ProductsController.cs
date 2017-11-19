@@ -10,6 +10,8 @@ namespace WebAppProject.Controllers
     {
         private MySystemWebContext db = new MySystemWebContext();
 
+        // Todo mundo pode olhar
+        [AllowAnonymous]
         // GET: Products
         public ActionResult Index()
         {
@@ -17,6 +19,8 @@ namespace WebAppProject.Controllers
             return View(products.ToList());
         }
 
+        // Todo mundo pode olhar
+        [AllowAnonymous]
         // GET: Products/Details/5
         public ActionResult Details(int? id)
         {
@@ -32,6 +36,8 @@ namespace WebAppProject.Controllers
             return View(product);
         }
 
+        // Comando para permitir um usuário que tem acesso ao cadastrado
+        [Authorize(Roles = "Create")]
         // GET: Products/Create
         public ActionResult Create()
         {
@@ -40,6 +46,8 @@ namespace WebAppProject.Controllers
             return View();
         }
 
+        // Comando para permitir um usuário que tem acesso ao cadastrado
+        [Authorize(Roles = "Create")]
         // POST: Products/Create
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -59,6 +67,8 @@ namespace WebAppProject.Controllers
             return View(product);
         }
 
+        // Comando para permitir um usuário que tem acesso a edição
+        [Authorize(Roles = "Edit")]
         // GET: Products/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -76,6 +86,8 @@ namespace WebAppProject.Controllers
             return View(product);
         }
 
+        // Comando para permitir um usuário que tem acesso a edição
+        [Authorize(Roles = "Edit")]
         // POST: Products/Edit/5
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -94,6 +106,8 @@ namespace WebAppProject.Controllers
             return View(product);
         }
 
+        // Comando para permitir um usuário que tem acesso ao delete
+        [Authorize(Roles = "Delete")]
         // GET: Products/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -109,6 +123,8 @@ namespace WebAppProject.Controllers
             return View(product);
         }
 
+        // Comando para permitir um usuário que tem acesso ao delete
+        [Authorize(Roles = "Delete")]
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
