@@ -7,18 +7,21 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using WebAppProject.Models;
+using WebAppProject.Services;
 
 namespace WebAppProject
 {
+    /* RETIREI A CLASSE DAQUI
     public class EmailService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)
         {
             // Conecte o seu serviço de email aqui para enviar um email.
-            return Task.FromResult(0);
+            return ConfigSendGridasync(message);
         }
     }
 
+        DEIXEI EM COMENTÁRIO O SMS
     public class SmsService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)
@@ -27,6 +30,7 @@ namespace WebAppProject
             return Task.FromResult(0);
         }
     }
+    */
 
     // Configure o gerenciador de usuários do aplicativo usado nesse aplicativo. O UserManager está definido no ASP.NET Identity e é usado pelo aplicativo.
     public class ApplicationUserManager : UserManager<ApplicationUser>
@@ -73,12 +77,15 @@ namespace WebAppProject
                 BodyFormat = "Seu código de segurança é {0}"
             });
             manager.EmailService = new EmailService();
-            manager.SmsService = new SmsService();
+            //manager.SmsService = new SmsService();
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
                 manager.UserTokenProvider = 
-                    new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
+                    new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"))
+                    {   //Tempo de vida do token - Três horas
+                        TokenLifespan = TimeSpan.FromHours(3)
+                    };
             }
             return manager;
         }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Configuration;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -25,49 +26,24 @@ namespace WebAppProject
         }
 
         /*
-         * ADICIONANDO PERMISSÕES AO SUPER USUÁRIO
-         */
-        private void AddRolesSuperUser(ApplicationDbContext db)
-        {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
-            var user = userManager.FindByEmail("arionmelkan@gmail.com");
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
-
-            // Verificando se o usuário não possui acesso ao método
-            if (!userManager.IsInRole(user.Id, "View"))
-            {
-                userManager.AddToRole(user.Id, "View");
-            }
-
-            if (!userManager.IsInRole(user.Id, "Create"))
-            {
-                userManager.AddToRole(user.Id, "Create");
-            }
-
-            if (!userManager.IsInRole(user.Id, "Edit"))
-            {
-                userManager.AddToRole(user.Id, "Edit");
-            }
-
-            if (!userManager.IsInRole(user.Id, "Delete"))
-            {
-                userManager.AddToRole(user.Id, "Delete");
-            }
-
-        }
-
-        /*
          * MÉTODO QUE FAZ A GERAÇÃO DO SUPER USUÁRIO
          */
         private void CreateSuperUser(ApplicationDbContext db)
         {
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             //Procurando pelo e-mail e definindo o meu super usuário
-            var user = userManager.FindByEmail("arionmelkan@gmail.com");
+            var user = userManager.FindByEmail(ConfigurationManager.AppSettings["emailSuperUser"]);
             
             if (user == null)
             {
-                Response.Redirect("~/Views/Account/Login.cshtml");
+                user = new ApplicationUser
+                {
+                    UserName = ConfigurationManager.AppSettings["superUser"],
+                    Email = ConfigurationManager.AppSettings["emailSuperUser"]
+                };
+
+                userManager.Create(user, ConfigurationManager.AppSettings["password"]);
+
             }
 
         }
@@ -100,6 +76,38 @@ namespace WebAppProject
             if (!roleManager.RoleExists("Delete"))
             {
                 roleManager.Create(new IdentityRole("Delete"));
+            }
+
+        }
+
+        /*
+         * ADICIONANDO PERMISSÕES AO SUPER USUÁRIO
+         */
+        private void AddRolesSuperUser(ApplicationDbContext db)
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            var user = userManager.FindByEmail(ConfigurationManager.AppSettings["emailSuperUser"]);
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+
+            // Verificando se o usuário não possui acesso ao método
+            if (!userManager.IsInRole(user.Id, "View"))
+            {
+                userManager.AddToRole(user.Id, "View");
+            }
+
+            if (!userManager.IsInRole(user.Id, "Create"))
+            {
+                userManager.AddToRole(user.Id, "Create");
+            }
+
+            if (!userManager.IsInRole(user.Id, "Edit"))
+            {
+                userManager.AddToRole(user.Id, "Edit");
+            }
+
+            if (!userManager.IsInRole(user.Id, "Delete"))
+            {
+                userManager.AddToRole(user.Id, "Delete");
             }
 
         }
