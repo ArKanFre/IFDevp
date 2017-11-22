@@ -3,12 +3,22 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace WebAppProject.Models
 {
     // É possível adicionar dados do perfil do usuário adicionando mais propriedades na sua classe ApplicationUser, visite https://go.microsoft.com/fwlink/?LinkID=317594 para obter mais informações.
     public class ApplicationUser : IdentityUser
     {
+        public string Nome { get; set; }
+
+        public string NickName { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime DataNasc { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Observe que o authenticationType deve corresponder àquele definido em CookieAuthenticationOptions.AuthenticationType
@@ -19,10 +29,7 @@ namespace WebAppProject.Models
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    {
-        //public String UserName { get; set; }
-        public DateTime DataNasc { get; set; }
-        
+    {        
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
