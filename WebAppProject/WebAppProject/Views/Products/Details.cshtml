@@ -4,28 +4,12 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalhes</h2>
 
 <div>
-    <h4>Product</h4>
+    <h4>Produto</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Categoria.NomeCategoria)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Categoria.NomeCategoria)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Fornecedor.NomeFornecedor)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Fornecedor.NomeFornecedor)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Nome)
         </dt>
@@ -48,6 +32,43 @@
 
         <dd>
             @Html.DisplayFor(model => model.Preco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </dt>
+
+        <dt>
+            @Html.DisplayFor(model => model.Quantidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayNameFor(model => model.Image)
+        </dd>
+
+        <dt>
+            @if (!string.IsNullOrEmpty(Model.Image))
+            {
+                <img src="@Url.Content(Model.Image)" alt="Image"
+                     style="width:50px; height:50px;
+		                max-width: 100%; height: auto;" />
+            }
+        </dt>
+
+        <dd>
+            @Html.DisplayNameFor(model => model.Categoria.NomeCategoria)
+        </dd>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria.NomeCategoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fornecedor.NomeFornecedor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fornecedor.NomeFornecedor)
         </dd>
 
     </dl>

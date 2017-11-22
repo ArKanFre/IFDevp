@@ -10,6 +10,11 @@ namespace WebAppProject.Models
     /// </summary>
     public class Provider
     {
+        public Provider ()
+        {
+            this.Produtos = new HashSet<Product>();
+        }
+       
         [Key]
         public int Id { get; set; }
 
@@ -18,8 +23,9 @@ namespace WebAppProject.Models
         [DisplayName("Nome do Fornecedor")]
         public String NomeFornecedor { get; set; }
 
-        [Required(ErrorMessage = "O campo data de inclusão é obrigatório!")]
         [DisplayName("Data de Inclusão")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataInclusao { get; set; }
 
         /*A ação abaixo faz com que carrega os dados do produto em modo LAZY,

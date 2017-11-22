@@ -46,9 +46,6 @@ C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\Microsoft.Thr
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\Microsoft.Threading.Tasks.Extensions.xml
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\Microsoft.Threading.Tasks.Extensions.Desktop.xml
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\Newtonsoft.Json.xml
-C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\SendGrid.SmtpApi.pdb
-C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\SendGrid.SmtpApi.xml
-C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\SendGrid.SmtpApi.dll.config
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\System.Web.Helpers.xml
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\System.Web.Mvc.xml
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\System.Web.Optimization.xml

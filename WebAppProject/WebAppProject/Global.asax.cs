@@ -26,6 +26,23 @@ namespace WebAppProject
         }
 
         /*
+         * ADICIONANDO PERMISSÃO AO SUPER USUÁRIO
+         */
+        private void AddRolesSuperUser(ApplicationDbContext db)
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            var user = userManager.FindByEmail(ConfigurationManager.AppSettings["emailSuperUser"]);
+            //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+
+            // Verificando se o usuário não possui acesso restrito
+            if (!userManager.IsInRole(user.Id, "Admin"))
+            {
+                userManager.AddToRole(user.Id, "Admin");
+            }
+
+        }
+
+        /*
          * MÉTODO QUE FAZ A GERAÇÃO DO SUPER USUÁRIO
          */
         private void CreateSuperUser(ApplicationDbContext db)
@@ -53,61 +70,18 @@ namespace WebAppProject
          * VIEW, EDIT, CREATE E DELETE
          */
         private void CreateRoles(ApplicationDbContext db)
-        {
-            // A variável roleManager armazena os métodos: View, Create, Edit e Delete
+        {            
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
 
-            // Condição para verificar se não existe um desses métodos
-            if (!roleManager.RoleExists("View"))
+            // Condição para verificar se não existe um desses acessos
+            if (!roleManager.RoleExists("Admin"))
             {
-                roleManager.Create(new IdentityRole("View"));
+                roleManager.Create(new IdentityRole("Admin"));
             }
 
-            if (!roleManager.RoleExists("Create"))
+            if (!roleManager.RoleExists("User"))
             {
-                roleManager.Create(new IdentityRole("Create"));
-            }
-
-            if (!roleManager.RoleExists("Edit"))
-            {
-                roleManager.Create(new IdentityRole("Edit"));
-            }
-
-            if (!roleManager.RoleExists("Delete"))
-            {
-                roleManager.Create(new IdentityRole("Delete"));
-            }
-
-        }
-
-        /*
-         * ADICIONANDO PERMISSÕES AO SUPER USUÁRIO
-         */
-        private void AddRolesSuperUser(ApplicationDbContext db)
-        {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
-            var user = userManager.FindByEmail(ConfigurationManager.AppSettings["emailSuperUser"]);
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
-
-            // Verificando se o usuário não possui acesso ao método
-            if (!userManager.IsInRole(user.Id, "View"))
-            {
-                userManager.AddToRole(user.Id, "View");
-            }
-
-            if (!userManager.IsInRole(user.Id, "Create"))
-            {
-                userManager.AddToRole(user.Id, "Create");
-            }
-
-            if (!userManager.IsInRole(user.Id, "Edit"))
-            {
-                userManager.AddToRole(user.Id, "Edit");
-            }
-
-            if (!userManager.IsInRole(user.Id, "Delete"))
-            {
-                userManager.AddToRole(user.Id, "Delete");
+                roleManager.Create(new IdentityRole("User"));
             }
 
         }

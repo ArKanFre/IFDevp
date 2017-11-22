@@ -26,11 +26,19 @@
                     <li>@Html.ActionLink("Início", "Index", "Home")</li>
                     <li>@Html.ActionLink("Sobre", "About", "Home")</li>
                     <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Produtos", "Index", "Products")</li>
-                    <li>@Html.ActionLink("Categorias", "Index", "Categories")</li>
-                    <li>@Html.ActionLink("Fornecedores", "Index", "Providers")</li>
-                    <li>@Html.ActionLink("Estoque", "Index", "Stocks")</li>
-                    
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Administradores
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Produtos", "Index", "Products")</li>
+                            <li>@Html.ActionLink("Categorias", "Index", "Categories")</li>
+                            <li>@Html.ActionLink("Fornecedores", "Index", "Providers")</li>
+                            <li>@Html.ActionLink("Estoque", "Index", "Stocks")</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Produtos", "Index", "Products")</li>                        
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

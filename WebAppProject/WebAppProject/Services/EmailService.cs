@@ -18,13 +18,13 @@ namespace WebAppProject.Services
 
     public class EmailService : IIdentityMessageService
     {
-        public async Task SendAsync(IdentityMessage message)
+        public Task SendAsync(IdentityMessage message)
         {
             // Conecte o seu serviço de email aqui para enviar um email
-            await ConfigSendGridasync(message);
+            return ConfigSendGridasync(message);
         }
 
-        public async Task ConfigSendGridasync(IdentityMessage message)
+        public Task ConfigSendGridasync(IdentityMessage message)
         {
             var myMessage = new SendGridMessage();
             myMessage.AddTo(message.Destination);
@@ -46,11 +46,11 @@ namespace WebAppProject.Services
             // Send the email.
             if (transportWeb != null)
             {
-                await transportWeb.DeliverAsync(myMessage);
+                return transportWeb.DeliverAsync(myMessage);
             }
             else
             {
-                await Task.FromResult(0);
+                return Task.FromResult(0);
             }
         }
     }
