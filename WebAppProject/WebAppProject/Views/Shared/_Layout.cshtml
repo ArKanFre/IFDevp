@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Meu Aplicativo ASP.NET - GAME PXS</title>
+    <title>@ViewBag.Title Extreme Sports </title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/DataTables/css/jquery.dataTables.min.css")
     @Scripts.Render("~/bundles/modernizr")
@@ -19,13 +19,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("GAME PSX", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("EXtreme Sport", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Início", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Sobre", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Gerais
+                            <span class="caret"></span>
+                        </a>
+                        <li>@Html.ActionLink("Início", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Sobre", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
+                    </li>
                     <li>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             Administradores

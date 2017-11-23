@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using WebAppProject.Services;
 
@@ -17,12 +18,14 @@ namespace WebAppProject.Models
         public DateTime DataPedido { get; set; }
 
         public StatusService StatusPedido { get; set; }
-
-        [Required(ErrorMessage = "O campo da data de pagamento é obrigatório!")]
-        [DataType(DataType.DateTime)]
-        public string DataPagamento { get; set; }
         
         public double ValorTotal { get; set; }
+
+        /*A ação abaixo faz com que carrega os dados do produto em modo LAZY,
+          evitando que a aplicação execute os dados o tempo todo e fique
+          sobrecarregada */
+        public virtual ICollection<DetailsOrder> Detalhes { get; set; }
+
     }
 
 }

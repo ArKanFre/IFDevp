@@ -16,7 +16,7 @@ namespace WebAppProject
             ApplicationDbContext db = new ApplicationDbContext();
             CreateRoles(db);
             CreateSuperUser(db);
-            AddRolesSuperUser(db);
+            //AddRolesSuperUser(db);
             db.Dispose();
             // Métodos que já foram inicializados com o ASP.NET
             AreaRegistration.RegisterAllAreas();

@@ -76,6 +76,7 @@ namespace WebAppProject.ViewModels
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Data de Nascimento")]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DtNasc { get; set; }
 
         [Required]
