@@ -1,7 +1,75 @@
-﻿
+﻿@model IEnumerable<WebAppProject.Models.User>
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Configurações de Permissões</h2>
+<h2>Index</h2>
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="userTable" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NickName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataNasc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+@foreach (var item in Model) {
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NickName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNasc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserEmail)
+            </td>
+            <td>
+                @if (!string.IsNullOrEmpty(item.Image))
+                {
+                    <img src="@Url.Content(item.Image)" alt="Image"
+                         style="width:50px; height:50px;
+		                max-width: 100%; height: auto;" />
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.UserId }, htmlAttributes: new { @class = "btn btn-warning glyphicon glyphicon-pencil" })
+                @Html.ActionLink("Details", "Details", new { id = item.UserId }, htmlAttributes: new { @class = "btn btn-warning glyphicon glyphicon-plus" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.UserId }, htmlAttributes: new { @class = "btn btn-warning glyphicon glyphicon-trash" })
+            </td>
+        </tr>
+    </tbody>
+}
+
+</table>
+
+@* Parte do script para DataTables *@
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#userTable').DataTable();
+        });
+    </script>
+}

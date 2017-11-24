@@ -15,5 +15,7 @@ namespace WebAppProject.Models
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Pedidos { get; set; }
         public DbSet<DetailsOrder> DetailsOrders { get; set; }
+
+        public System.Data.Entity.DbSet<WebAppProject.Models.User> Users { get; set; }
     }
 }

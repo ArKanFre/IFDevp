@@ -2,8 +2,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace WebAppProject.Models
 {
@@ -11,13 +9,8 @@ namespace WebAppProject.Models
     public class ApplicationUser : IdentityUser
     {
         public string Nome { get; set; }
-
         public string NickName { get; set; }
-
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime DtNasc { get; set; }
-
+        
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Observe que o authenticationType deve corresponder àquele definido em CookieAuthenticationOptions.AuthenticationType
@@ -31,10 +24,7 @@ namespace WebAppProject.Models
     {        
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
-        {
-            // A CADA MUDANÇA O DATABASE SERÁ APAGADO E CRIAREMOS OUTRO
-            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
-        }
+        {}
 
         public static ApplicationDbContext Create()
         {

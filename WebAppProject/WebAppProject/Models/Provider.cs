@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Web;
 
 namespace WebAppProject.Models
 {
@@ -28,9 +30,17 @@ namespace WebAppProject.Models
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataInclusao { get; set; }
 
+        [DisplayName("Imagem do Fornecedor")]
+        [DataType(DataType.ImageUrl)]
+        public string Image { get; set; }
+
+        //NÃO QUERO SALVAR NO BANCO
+        [NotMapped]
+        public HttpPostedFileBase Images { get; set; }
+
         /*A ação abaixo faz com que carrega os dados do produto em modo LAZY,
           evitando que a aplicação execute os dados o tempo todo e fique
-          sobrecarregada */         
+          sobrecarregada */
         public virtual ICollection<Product> Produtos { get; set; }
 
     }

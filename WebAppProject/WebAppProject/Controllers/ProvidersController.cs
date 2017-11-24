@@ -1,8 +1,10 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using WebAppProject.Models;
+using WebAppProject.Services;
 
 namespace WebAppProject.Controllers
 {
@@ -42,13 +44,31 @@ namespace WebAppProject.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,NomeFornecedor,DataInclusao")] Provider provider)
+        public ActionResult Create(Provider provider)
         {
             if (ModelState.IsValid)
             {
-                db.Providers.Add(provider);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    var pic = string.Empty;
+                    var folder = "~/Content/Images";
+
+                    if (provider.Images != null)
+                    {
+                        pic = ImageService.UploadPicture(provider.Images, folder);
+                        if (!string.IsNullOrEmpty(pic))
+                        {
+                            provider.Image = string.Format("{0}/{1}", folder, pic);
+                        }
+                    }
+                    db.Providers.Add(provider);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError(string.Empty, ex.Message);
+                }
             }
 
             return View(provider);
@@ -74,13 +94,31 @@ namespace WebAppProject.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,NomeFornecedor,DataInclusao")] Provider provider)
+        public ActionResult Edit(Provider provider)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(provider).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    var pic = string.Empty;
+                    var folder = "~/Content/Images";
+
+                    if (provider.Images != null)
+                    {
+                        pic = ImageService.UploadPicture(provider.Images, folder);
+                        if (!string.IsNullOrEmpty(pic))
+                        {
+                            provider.Image = string.Format("{0}/{1}", folder, pic);
+                        }
+                    }
+                    db.Entry(provider).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError(string.Empty, ex.Message);
+                }
             }
             return View(provider);
         }

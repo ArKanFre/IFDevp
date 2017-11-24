@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using WebAppProject.Services;
 
 namespace WebAppProject.Models
@@ -17,6 +18,7 @@ namespace WebAppProject.Models
         [DataType(DataType.DateTime)]
         public DateTime DataPedido { get; set; }
 
+        [NotMapped]
         public StatusService StatusPedido { get; set; }
 
         [Required]
