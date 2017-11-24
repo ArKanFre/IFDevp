@@ -153,7 +153,7 @@ namespace WebAppProject.Controllers
                 {
                     Nome = model.Nome,
                     NickName = model.Nickname,
-                    DataNasc = model.DtNasc,
+                    DtNasc = model.DtNasc,
                     UserName = model.Email,
                     Email = model.Email
                 };

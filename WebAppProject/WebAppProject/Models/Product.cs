@@ -25,7 +25,7 @@ namespace WebAppProject.Models
         [RegularExpression(@"^\d+.\d{0,2}$", ErrorMessage = "É para conter duas casas decimais")]
         [Required(ErrorMessage = "O campo preço é obrigatório")]
         [DisplayName("Preço")]
-        public double Preco { get; set; }
+        public decimal Preco { get; set; }
 
         [DisplayName("Imagem do Produto")]
         [DataType(DataType.ImageUrl)]
@@ -35,6 +35,11 @@ namespace WebAppProject.Models
         [Required]
         [Range(0, Int32.MaxValue, ErrorMessage = "Não temos quantidade negativa!")]
         public int Quantidade { get; set; }
+
+        [DisplayName("Data da Última Compra")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime DataUltimaCompra { get; set; }
 
         //NÃO QUERO SALVAR NO BANCO
         [NotMapped]

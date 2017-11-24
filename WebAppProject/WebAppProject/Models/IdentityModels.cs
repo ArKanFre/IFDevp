@@ -32,6 +32,8 @@ namespace WebAppProject.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            // A CADA MUDANÇA O DATABASE SERÁ APAGADO E CRIAREMOS OUTRO
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
         }
 
         public static ApplicationDbContext Create()

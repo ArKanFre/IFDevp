@@ -28,9 +28,11 @@
                             Gerais
                             <span class="caret"></span>
                         </a>
-                        <li>@Html.ActionLink("Início", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Sobre", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Início", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Sobre", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
+                        </ul>                        
                     </li>
                     <li>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
