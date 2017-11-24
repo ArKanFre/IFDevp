@@ -90,6 +90,7 @@ C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\pt-br\Microso
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\pt-br\Microsoft.Owin.Security.Google.resources.dll
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\pt-br\Microsoft.Owin.Security.Twitter.resources.dll
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\pt-br\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\obj\Debug\WebAppProject.csprojResolveAssemblyReference.cache
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\obj\Debug\WebAppProject.csproj.CoreCompileInputs.cache
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\obj\Debug\WebAppProject.dll
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\obj\Debug\WebAppProject.pdb

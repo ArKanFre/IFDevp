@@ -36,11 +36,6 @@ namespace WebAppProject.Models
         [Range(0, Int32.MaxValue, ErrorMessage = "Não temos quantidade negativa!")]
         public int Quantidade { get; set; }
 
-        [DisplayName("Data da Última Compra")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime DataUltimaCompra { get; set; }
-
         //NÃO QUERO SALVAR NO BANCO
         [NotMapped]
         public HttpPostedFileBase Images { get; set; }

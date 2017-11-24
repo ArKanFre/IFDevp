@@ -11,8 +11,10 @@ namespace WebAppProject.Models
         [Key]
         public string UserId { get; set; }
 
+        [DisplayName("Apelido")]
         public string NickName { get; set; }
 
+        [DisplayName("Nome do Usuário")]
         public string UserName { get; set; }
 
         [DataType(DataType.Date)]
@@ -20,6 +22,7 @@ namespace WebAppProject.Models
         public DateTime DataNasc { get; set; }
 
         [DataType(DataType.EmailAddress)]
+        [DisplayName("E-mail")]
         public string UserEmail { get; set; }
 
         [DisplayName("Imagem do Usuário")]

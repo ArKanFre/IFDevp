@@ -15,7 +15,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.NomeCategoria)
             </th>
-            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
 
@@ -26,8 +26,8 @@
                 @Html.DisplayFor(modelItem => item.NomeCategoria)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.CategoriaId }, htmlAttributes: new { @class = "btn btn-danger glyphicon glyphicon-pencil" })
-                @Html.ActionLink("Details", "Details", new { id = item.CategoriaId }, htmlAttributes: new { @class = "btn btn-danger glyphicon glyphicon-plus" })
+                @Html.ActionLink("Edit", "Edit", new { id = item.CategoriaId }, htmlAttributes: new { @class = "btn btn-warning glyphicon glyphicon-pencil" })
+                @Html.ActionLink("Details", "Details", new { id = item.CategoriaId }, htmlAttributes: new { @class = "btn btn-success glyphicon glyphicon-plus" })
                 @Html.ActionLink("Delete", "Delete", new { id = item.CategoriaId }, htmlAttributes: new { @class = "btn btn-danger glyphicon glyphicon-trash" })
             </td>
         </tr>
