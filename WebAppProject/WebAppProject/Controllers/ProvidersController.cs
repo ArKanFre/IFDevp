@@ -12,12 +12,14 @@ namespace WebAppProject.Controllers
     {
         private MySystemWebContext db = new MySystemWebContext();
 
+        [AllowAnonymous]
         // GET: Providers
         public ActionResult Index()
         {
             return View(db.Providers.ToList());
         }
 
+        [AllowAnonymous]
         // GET: Providers/Details/5
         public ActionResult Details(int? id)
         {

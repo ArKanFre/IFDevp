@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebAppProject.Models.Product>
+
+@{
+    ViewBag.Title = "BuscaProduto";
+}
+
+<h2>Busca Produto</h2>
+
+<div>
+    @using (Html.BeginForm())
+    {
+        <p>Digite o nome</p>
+            <input type="text" name="texto" id="texto" placeholder="Digite a pesquisa" />
+            <div><button type="submit" class="btn btn-danger">Filtrar</button></div>
+    }
+</div>
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Nome</td>
+    </tr>
+    @{
+        if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nome</td>
+                </tr>
+            }
+        }
+    }
+</table>
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

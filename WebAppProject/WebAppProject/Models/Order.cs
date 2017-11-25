@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using WebAppProject.Services;
@@ -14,10 +15,12 @@ namespace WebAppProject.Models
         [Key]
         public int Id { get; set; }
 
+        [DisplayName("Data do Pedido")]
         [Required(ErrorMessage = "O campo da data de pedido é obrigatório!")]
         [DataType(DataType.DateTime)]
         public DateTime DataPedido { get; set; }
 
+        [DisplayName("Status")]
         [NotMapped]
         public StatusService StatusPedido { get; set; }
 

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title Extreme Sports </title>
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/DataTables/css/jquery.dataTables.min.css")
+    @Styles.Render("~/Content/DataTables/css/dataTables.bootstrap4.min.css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -43,10 +43,13 @@
                             <li>@Html.ActionLink("Produtos", "Index", "Products")</li>
                             <li>@Html.ActionLink("Categorias", "Index", "Categories")</li>
                             <li>@Html.ActionLink("Fornecedores", "Index", "Providers")</li>
+                            <li>@Html.ActionLink("Pedidos", "Index", "Orders")</li>
                             <li>@Html.ActionLink("Usuários", "Index", "Users")</li>
                         </ul>
                     </li>
-                    <li>@Html.ActionLink("Produtos", "Index", "CarrinhoCompras")</li>                        
+                    <li>@Html.ActionLink("Produtos", "Produtos", "Products")</li>
+                    <li>@Html.ActionLink("Produtos", "Index", "CarrinhoCompras")</li>
+                    <li>@Html.ActionLink("Buscar Produtos", "BuscaProduto", "Products")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -63,6 +66,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.min.js")
+    @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap4.min.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

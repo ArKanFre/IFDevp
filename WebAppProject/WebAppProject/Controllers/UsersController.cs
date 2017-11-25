@@ -13,12 +13,14 @@ namespace WebAppProject.Controllers
         private MySystemWebContext db = new MySystemWebContext();
         private static UsersServices userServ = new UsersServices();
 
+        [Authorize(Roles = "Admin")]
         // GET: Users
         public ActionResult Index()
         {
             return View(db.Users.ToList());
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Users/Details/5
         public ActionResult Details(string id)
         {
@@ -34,12 +36,14 @@ namespace WebAppProject.Controllers
             return View(user);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Users/Create
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Users/Create
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -76,6 +80,7 @@ namespace WebAppProject.Controllers
             return View(user);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Users/Edit/5
         public ActionResult Edit(string id)
         {
@@ -91,6 +96,7 @@ namespace WebAppProject.Controllers
             return View(user);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Users/Edit/5
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -133,6 +139,7 @@ namespace WebAppProject.Controllers
             return View(user);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Users/Delete/5
         public ActionResult Delete(string id)
         {
@@ -148,6 +155,7 @@ namespace WebAppProject.Controllers
             return View(user);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

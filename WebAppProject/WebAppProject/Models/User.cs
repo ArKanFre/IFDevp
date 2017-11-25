@@ -17,6 +17,7 @@ namespace WebAppProject.Models
         [DisplayName("Nome do Usuário")]
         public string UserName { get; set; }
 
+        [DisplayName("Data Nascimento")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataNasc { get; set; }

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WebAppProject.Models.Product>
+
+@{
+    ViewBag.Title = "Produtos";
+}
+
+<h2>Produtos</h2>
+
+<div class="container">
+    @if (Model.Count() == 0)
+    {
+        <p class="center-block text-center"><b>Nenhum produto foi encontrado!</b></p>
+    }
+
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-6">
+            <div class="produto">
+                <h2 class="center-block text-center">@Html.DisplayFor(modelItem => item.Nome)</h2>
+
+                <div class="col-md-12 text-center">
+                    @if (!string.IsNullOrEmpty(item.Image))
+                    {
+                        <img src="@Url.Content(item.Image)" alt="Image"
+                             style="width:100px; height:100px;
+		                max-width: 100%; height: auto;" />
+                    }
+                    else {
+                        <p><b>Produto sem Imagem!</b></p>
+                    }
+                    <p>@Html.DisplayFor(modelItem => item.Descricao)</p>
+                </div>
+
+                <div class="col-md-6">
+                    <p><b>Categoria: </b>@Html.DisplayFor(modelItem => item.Categoria.NomeCategoria)</p>
+                    <p><b>Fornecedor: </b>@Html.DisplayFor(modelItem => item.Fornecedor.NomeFornecedor)</p>
+                </div>
+
+                <div class="col-md-6">
+                    <p><b>Categoria: </b>@Html.DisplayFor(modelItem => item.Categoria.NomeCategoria)</p>
+                    <p><b>Preço: </b>@Html.DisplayFor(modelItem => item.Preco)</p>
+                </div>
+
+                <div class="col-md-12 text-center">
+                    @Html.ActionLink(" ", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-warning glyphicon glyphicon-plus" })
+                </div>
+                                
+            </div>
+        </div>
+    }
+</div>
+

@@ -15,6 +15,27 @@ namespace WebAppProject.Controllers
         // Todo mundo pode olhar
         [AllowAnonymous]
         // GET: Products
+        public ActionResult Produtos()
+        {
+            var products = db.Products.Include(p => p.Categoria).Include(p => p.Fornecedor);
+            return View(products.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult BuscaProduto()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult BuscaProduto(string texto)
+        {
+            return View(db.Products.Where(x => x.Nome.Contains(texto)).OrderBy(x => x.Nome));
+        }
+
+        // Aó administrador
+        [Authorize(Roles="Admin")]
+        // GET: Products
         public ActionResult Index()
         {
             var products = db.Products.Include(p => p.Categoria).Include(p => p.Fornecedor);
