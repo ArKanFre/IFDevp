@@ -6,7 +6,7 @@
 
 <h2>Detalhes</h2>
 
-<div>
+<div class="col-lg-12">
     <h4>Produto</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -38,26 +38,30 @@
             @Html.DisplayNameFor(model => model.Quantidade)
         </dt>
 
-        <dt>
-            @Html.DisplayFor(model => model.Quantidade)
-        </dt>
-
         <dd>
-            @Html.DisplayNameFor(model => model.Image)
+            @Html.DisplayFor(model => model.Quantidade)
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
             @if (!string.IsNullOrEmpty(Model.Image))
             {
                 <img src="@Url.Content(Model.Image)" alt="Image"
-                     style="width:50px; height:50px;
+                     style="width:100px; height:100px;
 		                max-width: 100%; height: auto;" />
             }
-        </dt>
-
-        <dd>
-            @Html.DisplayNameFor(model => model.Categoria.NomeCategoria)
+            else
+            {
+                <p><b>Produto sem Imagem!</b></p>
+            }
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categoria.NomeCategoria)
+        </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Categoria.NomeCategoria)
@@ -74,6 +78,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(" ", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-warning glyphicon glyphicon-edit" })
+    @Html.ActionLink(" ", "Index", null, htmlAttributes: new { @class = "btn btn-default glyphicon glyphicon-backward" })
 </p>

@@ -52,10 +52,17 @@ namespace WebAppProject.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Product product = db.Products.Find(id);
+
             if (product == null)
             {
                 return HttpNotFound();
             }
+            else
+            {
+                product.Categoria = db.Categories.Find(product.CategoriaId);
+                product.Fornecedor = db.Providers.Find(product.FornecedorId);
+            }
+
             return View(product);
         }
 

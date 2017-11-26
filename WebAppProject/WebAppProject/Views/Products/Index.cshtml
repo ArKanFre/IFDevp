@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink(" ", "Create", new {}, htmlAttributes: new { @class = "btn btn-success glyphicon glyphicon-plus" })
+    @Html.ActionLink(" ", "Create", null, htmlAttributes: new { @class = "btn btn-success glyphicon glyphicon-plus" })
 </p>
 <table id="productTable" class="table table-bordered" cellspacing="0">
     <thead>
@@ -68,7 +68,7 @@
             </td>
             <td>
                 <div class="col-sm-4">
-                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-warning glyphicon glyphicon-pencil" })
+                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-warning glyphicon glyphicon-edit" })
                 </div>
                 <div class="col-sm-4">
                     @Html.ActionLink(" ", "Details", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-info glyphicon glyphicon-plus-sign" })
