@@ -25,7 +25,7 @@ namespace WebAppProject.Models
         [RegularExpression(@"^\d+.\d{0,2}$", ErrorMessage = "É para conter duas casas decimais")]
         [Required(ErrorMessage = "O campo preço é obrigatório")]
         [DisplayName("Preço")]
-        public decimal Preco { get; set; }
+        public double Preco { get; set; }
 
         [DisplayName("Imagem do Produto")]
         [DataType(DataType.ImageUrl)]

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using WebAppProject.Models;
 
@@ -72,6 +70,72 @@ namespace WebAppProject.Controllers
             lsCart.RemoveAt(check);
 
             return View("Index");
+        }
+
+        public ActionResult UpdateCart(FormCollection form)
+        {
+            string[] quantities = form.GetValues("quantity");
+            List<Cart> lstCart = (List<Cart>)Session[strCart];
+
+            for (int i = 0; i < lstCart.Count; i++)
+            {
+                lstCart[i].Quantidade = Convert.ToInt32(quantities[i]);
+            }
+            Session[strCart] = lstCart;
+
+            return View("Index");
+        }
+
+        public ActionResult Checkout()
+        {
+            return View("Checkout");
+        }
+
+        public ActionResult ProcessOrder(FormCollection form)
+        {
+            List<Cart> lstCart = (List<Cart>)Session[strCart];
+
+            // 1 - Salvar na taela Pedidos
+            Order pedido = new Order()
+            {
+                DataPedido = DateTime.Now
+            };
+            db.Pedidos.Add(pedido);
+            db.SaveChanges();
+
+            // 2 - Salvar na tabela Detalhes dos Pedidos
+            foreach (Cart cart in lstCart)
+            {
+                DetailsOrder orderDetail = new DetailsOrder()
+                {
+                    IdOrder = pedido.Id,
+                    IdProduct = cart.Produto.Id,
+                    Quantity = cart.Produto.Quantidade,
+                    Price = cart.Produto.Preco
+                };
+                db.DetailsOrders.Add(orderDetail);
+                db.SaveChanges();
+            }
+
+            // 3 - Remover a sessão do carrinho
+            Session.Remove(strCart);
+
+            return View("OrderSuccess");
+        }
+
+        // GET: Products/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Product product = db.Products.Find(id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
         }
     }
 }

@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalhes</h2>
 
-<div>
-    <h4>Provider</h4>
+<div class="col-lg-12">
+    <h4>Fornecedor</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -34,14 +34,13 @@
             @if (!string.IsNullOrEmpty(Model.Image))
             {
                 <img src="@Url.Content(Model.Image)" alt="Image"
-                     style="width:50px; height:50px;
+                     style="width:100px; height:100px;
 		                max-width: 100%; height: auto;" />
             }
         </dt>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(" ", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-warning glyphicon glyphicon-edit" })
+    @Html.ActionLink(" ", "Index", null, htmlAttributes: new { @class = "btn btn-default glyphicon glyphicon-backward" })
 </p>

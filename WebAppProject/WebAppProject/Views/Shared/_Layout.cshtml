@@ -48,7 +48,6 @@
                         </ul>
                     </li>
                     <li>@Html.ActionLink("Produtos", "Produtos", "Products")</li>
-                    <li>@Html.ActionLink("Produtos", "Index", "CarrinhoCompras")</li>
                     <li>@Html.ActionLink("Buscar Produtos", "BuscaProduto", "Products")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -65,6 +64,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
     @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.min.js")
     @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap4.min.js")
     @RenderSection("scripts", required: false)

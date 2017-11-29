@@ -1,4 +1,5 @@
 ﻿@using WebAppProject.Models;
+@using using System.Web.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -8,7 +9,7 @@
 @{
     if (Session["Cart"] == null)
     {
-        //return RedirectToAction("Index", "Home");
+        Redirect("https://localhost:44393");
     }
     else
     {
@@ -29,8 +30,9 @@
                     <!-- FAZENDO O CÁLCULO DO SUBTOTAL -->
                     <td>@(String.Format("{0:N0}", cart.Produto.Preco * cart.Quantidade))</td>
                     <td>
-                        @Html.ActionLink("Delete", "Delete", "Cart", new { id = cart.Produto.Id },
-                    new { onclick = "return confirm ('Você tem certeza que quer retirar este item?);" })
+                        @Html.ActionLink(" ", "Delete", "Cart", new { id = cart.Produto.Id },
+                            new { onclick = "return confirm ('Você tem certeza que quer retirar este item?);",
+                                @class = "btn btn-danger glyphicon glyphicon-trash" })
                     </td>
                 </tr>
             }
@@ -50,6 +52,6 @@
         </table>
         <br />
         @Html.ActionLink("Você quer continuar?", "Produtos", "Products")
-                        }
+    }
 }
 
