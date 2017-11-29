@@ -38,7 +38,7 @@
 
                 <div class="col-md-6">
                     <p><b>Preço: </b>@Html.DisplayFor(modelItem => item.Preco)</p>
-                    @Html.ActionLink(" ", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-warning glyphicon glyphicon-plus" })
+                    @Html.ActionLink(" ", "OrderNow", "Cart", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-warning glyphicon glyphicon-plus" })
                 </div>                                
             </div>
         </div>

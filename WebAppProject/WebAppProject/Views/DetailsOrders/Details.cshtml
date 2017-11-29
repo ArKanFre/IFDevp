@@ -1,0 +1,42 @@
+﻿@model WebAppProject.Models.DetailsOrder
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DetailsOrder</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pedido.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pedido.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Produto.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Produto.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataPagamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataPagamento)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdDetailsOrder }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

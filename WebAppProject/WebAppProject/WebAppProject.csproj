@@ -211,7 +211,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CarrinhoComprasController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\DetailsOrdersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
@@ -221,7 +223,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Sell.cs" />
+    <Compile Include="Services\CarrinhoComprasService.cs" />
     <Compile Include="Services\StatusService.cs" />
     <Compile Include="Services\UsersServices.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
@@ -573,6 +577,12 @@
     <Content Include="Views\CarrinhoCompras\Create.cshtml" />
     <Content Include="Views\Products\BuscaProduto.cshtml" />
     <Content Include="Views\Products\Produtos.cshtml" />
+    <Content Include="Views\DetailsOrders\Create.cshtml" />
+    <Content Include="Views\DetailsOrders\Delete.cshtml" />
+    <Content Include="Views\DetailsOrders\Details.cshtml" />
+    <Content Include="Views\DetailsOrders\Edit.cshtml" />
+    <Content Include="Views\DetailsOrders\Index.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

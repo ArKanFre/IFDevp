@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebAppProject.Models
@@ -13,6 +14,9 @@ namespace WebAppProject.Models
         public string DataPagamento { get; set; }
         public int IdProduct { get; set; }
         public int IdOrder { get; set; }
+
+        [Range(0, Int32.MaxValue, ErrorMessage = "Não existe pedido negativo!")]
+        public int Quantity { get; set; }
 
         [ForeignKey("IdProduct")]
         public virtual Product Produto { get; set; }

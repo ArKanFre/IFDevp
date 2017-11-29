@@ -5,36 +5,62 @@
 }
 
 <h2>Busca Produto</h2>
+<hr />
 
-<div>
+<div class="container col-lg-12">
     @using (Html.BeginForm())
     {
-        <p>Digite o nome</p>
+        <div class="col-md-6">
             <input type="text" name="texto" id="texto" placeholder="Digite a pesquisa" />
-            <div><button type="submit" class="btn btn-danger">Filtrar</button></div>
+        </div>
+        <div class="col-md-6">
+            <button type="submit" class="btn btn-danger">Filtrar</button>
+        </div>
     }
 </div>
-<table>
-    <tr>
-        <td>Id</td>
-        <td>Nome</td>
-    </tr>
-    @{
-        if (Model != null)
-        {
-            foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Id</td>
-                    <td>@item.Nome</td>
-                </tr>
-            }
-        }
+<hr />
+
+@{
+    if (Model != null)
+    {
+        <div class="container col-lg-12">
+           @foreach (var item in Model)
+           {
+            <div class="col-lg-6">
+                <div class="produto">
+                    <h2 class="center-block text-center">@Html.DisplayFor(modelItem => item.Nome)</h2>
+
+                    <div class="col-md-12 text-center">
+                        @if (!string.IsNullOrEmpty(item.Image))
+                    {
+                            <img src="@Url.Content(item.Image)" alt="Image"
+                                 style="width:100px; height:100px;
+		                max-width: 100%; height: auto;" />
+                        }
+                        else
+                        {
+                            <p><b>Produto sem Imagem!</b></p>
+                        }
+                        <p>@Html.DisplayFor(modelItem => item.Descricao)</p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <p><b>Categoria: </b>@Html.DisplayFor(modelItem => item.Categoria.NomeCategoria)</p>
+                        <p><b>Fornecedor: </b>@Html.DisplayFor(modelItem => item.Fornecedor.NomeFornecedor)</p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <p><b>Preço: </b>@Html.DisplayFor(modelItem => item.Preco)</p>
+                        @Html.ActionLink(" ", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-warning glyphicon glyphicon-plus" })
+                    </div>
+                </div>
+            </div>
+           }
+        </div>
     }
-</table>
+}
+<hr />
 
-
-
-<div>
+<div class="container">
     @Html.ActionLink("Back to List", "Index")
 </div>

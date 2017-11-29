@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -7,85 +6,20 @@ using WebAppProject.Models;
 
 namespace WebAppProject.Controllers
 {
-    public class CarrinhoComprasController : Controller
+    public class DetailsOrdersController : Controller
     {
         private MySystemWebContext db = new MySystemWebContext();
 
-        public ActionResult Comprar(int id, int quantity)
-        {
-            if (Session["CarrinhoWebApp"] == null)
-            {
-                List<DetailsOrder> cart = new List<DetailsOrder>
-                {
-                    new DetailsOrder
-                    {
-                        Produto = db.Products.Find(id)
-                    }
-                };
-                Session["CarrinhoWebApp"] = cart;
-            }
-            else
-            {
 
-            }
 
-            return View();
-
-        }
-
-        public ActionResult AdicionarCarrinho(int id, int quantity)
-        {
-            // Código retirado da questão: https://pt.stackoverflow.com/questions/40857/implementa%C3%A7%C3%A3o-de-carrinho-de-compras-em-asp-net-mvc
-            // Ao invés de colocar uma lista de ítens de Design, vamos colocar
-            // Um objeto da entidade Pedido, que já possui List<ItemDesign>.
-            // List<ItemDesign> carrinho = Session["Carrinho"] != null ? (List<ItemDesign>)Session["Carrinho"] : new List<ItemDesign>();
-            Order carrinho = Session["CarrinhoWebApp"] != null ? (Order)Session["CarrinhoWebApp"] : new Order();
-
-            var product = db.Products.Find(id);
-
-            if (product != null)
-            {
-                var itemProduto = new DetailsOrder
-                {
-                    Produto = product
-                };
-                itemProduto.Produto.Quantidade = quantity;
-
-                if (carrinho.Detalhes.FirstOrDefault(x => x.IdDetailsOrder == product.Id) != null)
-                {
-                    carrinho.Detalhes.FirstOrDefault(x => x.IdDetailsOrder == product.Id).Produto.Quantidade += 1;
-                }
-
-                else
-                {
-                    carrinho.Detalhes.Add(itemProduto);
-                }
-
-                // Aqui podemos fazer o cálculo do valor
-
-                carrinho.ValorTotal = carrinho.Detalhes.Select(i => i.Produto).Sum(d => d.Preco);
-
-                Session["CarrinhoWebApp"] = carrinho;
-            }
-
-            return RedirectToAction("CarrinhoWebApp");
-        }
-
-        public ActionResult Carrinho()
-        {
-            Order carrinho = Session["CarrinhoWebApp"] != null ? (Order)Session["CarrinhoWebApp"] : new Order();
-
-            return View(carrinho);
-        }
-
-        // GET: CarrinhoCompras
+        // GET: DetailsOrders
         public ActionResult Index()
         {
             var detailsOrders = db.DetailsOrders.Include(d => d.Pedido).Include(d => d.Produto);
             return View(detailsOrders.ToList());
         }
 
-        // GET: CarrinhoCompras/Details/5
+        // GET: DetailsOrders/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -100,7 +34,7 @@ namespace WebAppProject.Controllers
             return View(detailsOrder);
         }
 
-        // GET: CarrinhoCompras/Create
+        // GET: DetailsOrders/Create
         public ActionResult Create()
         {
             ViewBag.IdOrder = new SelectList(db.Pedidos, "Id", "Id");
@@ -108,12 +42,12 @@ namespace WebAppProject.Controllers
             return View();
         }
 
-        // POST: CarrinhoCompras/Create
+        // POST: DetailsOrders/Create
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdDetailsOrder,DataPagamento,ValorTotal,IdProduct,IdOrder")] DetailsOrder detailsOrder)
+        public ActionResult Create([Bind(Include = "IdDetailsOrder,DataPagamento,IdProduct,IdOrder")] DetailsOrder detailsOrder)
         {
             if (ModelState.IsValid)
             {
@@ -127,7 +61,7 @@ namespace WebAppProject.Controllers
             return View(detailsOrder);
         }
 
-        // GET: CarrinhoCompras/Edit/5
+        // GET: DetailsOrders/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -144,12 +78,12 @@ namespace WebAppProject.Controllers
             return View(detailsOrder);
         }
 
-        // POST: CarrinhoCompras/Edit/5
+        // POST: DetailsOrders/Edit/5
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdDetailsOrder,DataPagamento,ValorTotal,IdProduct,IdOrder")] DetailsOrder detailsOrder)
+        public ActionResult Edit([Bind(Include = "IdDetailsOrder,DataPagamento,IdProduct,IdOrder")] DetailsOrder detailsOrder)
         {
             if (ModelState.IsValid)
             {
@@ -162,7 +96,7 @@ namespace WebAppProject.Controllers
             return View(detailsOrder);
         }
 
-        // GET: CarrinhoCompras/Delete/5
+        // GET: DetailsOrders/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -177,7 +111,7 @@ namespace WebAppProject.Controllers
             return View(detailsOrder);
         }
 
-        // POST: CarrinhoCompras/Delete/5
+        // POST: DetailsOrders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
