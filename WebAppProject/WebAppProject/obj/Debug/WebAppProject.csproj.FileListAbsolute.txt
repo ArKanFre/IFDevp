@@ -93,3 +93,8 @@ C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\pt-br\Microso
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\obj\Debug\WebAppProject.csproj.CoreCompileInputs.cache
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\obj\Debug\WebAppProject.dll
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\obj\Debug\WebAppProject.pdb
+C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\PagedList.dll
+C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\PagedList.Mvc.dll
+C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\PagedList.xml
+C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\PagedList.Mvc.xml
+C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\obj\Debug\WebAppProject.csprojResolveAssemblyReference.cache

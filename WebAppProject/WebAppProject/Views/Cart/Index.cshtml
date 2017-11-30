@@ -1,5 +1,4 @@
 ﻿@using WebAppProject.Models;
-@using using System.Web.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -9,7 +8,7 @@
 @{
     if (Session["Cart"] == null)
     {
-        Redirect("https://localhost:44393");
+        <h1>A página não contém nenhum produto selecionado!</h1>
     }
     else
     {

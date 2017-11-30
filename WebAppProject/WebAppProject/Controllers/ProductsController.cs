@@ -5,6 +5,7 @@ using System.Net;
 using System.Web.Mvc;
 using WebAppProject.Models;
 using WebAppProject.Services;
+using PagedList;
 
 namespace WebAppProject.Controllers
 {
@@ -15,16 +16,45 @@ namespace WebAppProject.Controllers
         // Todo mundo pode olhar
         [AllowAnonymous]
         // GET: Products
-        public ActionResult Produtos()
+        public ActionResult Produtos(int? page, int? category)
         {
-            var products = db.Products.Include(p => p.Categoria).Include(p => p.Fornecedor);
-            return View(products.ToList());
+            var pageNumber = page ?? 1;
+            var pageSize = 10;
+            if (category != null)
+            {
+                ViewBag.category = category;
+                var productList = db.Products
+                                .OrderByDescending(p => p.Id)
+                                .Where(c => c.CategoriaId == category)
+                                .ToPagedList(pageNumber, pageSize);
+                return View(productList);
+            }
+            else
+            {
+                var productList = db.Products.OrderByDescending(p => p.Id).ToPagedList(pageNumber, pageSize);
+                return View(productList);
+            }
         }
 
         [HttpGet]
-        public ActionResult BuscaProduto()
+        public ActionResult BuscaProduto(int? page, int? category)
         {
-            return View();
+            var pageNumber = page ?? 1;
+            var pageSize = 10;
+            if (category != null)
+            {
+                ViewBag.category = category;
+                var productList = db.Products
+                                .OrderByDescending(p => p.Id)
+                                .Where(c => c.CategoriaId == category)
+                                .ToPagedList(pageNumber, pageSize);
+                return View(productList);
+            }
+            else
+            {
+                var productList = db.Products.OrderByDescending(p => p.Id).ToPagedList(pageNumber, pageSize);
+                return View(productList);
+            }
         }
 
         [HttpPost]

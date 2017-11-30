@@ -1,4 +1,7 @@
-﻿@model IEnumerable<WebAppProject.Models.Product>
+﻿@using PagedList.Mvc;
+@using PagedList;
+
+@model IPagedList<WebAppProject.Models.Product>
 
 @{
     ViewBag.Title = "Produtos";
@@ -22,10 +25,11 @@
                     @if (!string.IsNullOrEmpty(item.Image))
                     {
                         <img src="@Url.Content(item.Image)" alt="Image"
-                             style="width:100px; height:100px;
-		                max-width: 100%; height: auto;" />
+                                style="width:100px; height:100px;
+		                        max-width: 100%; height: auto;" />
                     }
-                    else {
+                    else
+                    {
                         <p><b>Produto sem Imagem!</b></p>
                     }
                     <p>@Html.DisplayFor(modelItem => item.Descricao)</p>
@@ -39,9 +43,16 @@
                 <div class="col-md-6">
                     <p><b>Preço: </b>@Html.DisplayFor(modelItem => item.Preco)</p>
                     @Html.ActionLink(" ", "OrderNow", "Cart", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-warning glyphicon glyphicon-plus" })
-                </div>                                
+                </div>
             </div>
         </div>
-    }
+     }
+</div>
+
+<div class="clearfix">
+    Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) à @Model.PageCount
+</div>
+<div class="pagination">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = Page, category = ViewBag.category}))
 </div>
 

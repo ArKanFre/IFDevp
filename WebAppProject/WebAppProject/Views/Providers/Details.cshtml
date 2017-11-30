@@ -26,18 +26,18 @@
             @Html.DisplayFor(model => model.DataInclusao)
         </dd>
 
-        <dd>
-            @Html.DisplayNameFor(model => model.Image)
-        </dd>
-
         <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
             @if (!string.IsNullOrEmpty(Model.Image))
             {
                 <img src="@Url.Content(Model.Image)" alt="Image"
                      style="width:100px; height:100px;
 		                max-width: 100%; height: auto;" />
             }
-        </dt>
+        </dd>
     </dl>
 </div>
 <p>
