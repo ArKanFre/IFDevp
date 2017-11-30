@@ -10,7 +10,7 @@ namespace WebAppProject.Controllers
 {
     public class UsersController : Controller
     {
-        private MySystemWebContext db = new MySystemWebContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
         private static UsersServices userServ = new UsersServices();
 
         [Authorize(Roles = "Admin")]
@@ -28,7 +28,7 @@ namespace WebAppProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            ApplicationUser user = db.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -49,7 +49,7 @@ namespace WebAppProject.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(User user)
+        public ActionResult Create(ApplicationUser user)
         {
             if (ModelState.IsValid)
             {
@@ -58,9 +58,9 @@ namespace WebAppProject.Controllers
                     var pic = string.Empty;
                     var folder = "~/Content/Images";
 
-                    if (user.Images != null)
+                    if (user.Pic != null)
                     {
-                        pic = ImageService.UploadPicture(user.Images, folder);
+                        pic = ImageService.UploadPicture(user.Pic, folder);
                         if (!string.IsNullOrEmpty(pic))
                         {
                             user.Image = string.Format("{0}/{1}", folder, pic);
@@ -68,7 +68,7 @@ namespace WebAppProject.Controllers
                     }
                     db.Users.Add(user);
                     db.SaveChanges();
-                    userServ.CreateUserAsp(user.UserEmail, "User", "123@Senha");
+                    userServ.CreateUserAsp(user.Email, "User", "123@Senha");
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
@@ -88,7 +88,7 @@ namespace WebAppProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            ApplicationUser user = db.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -102,7 +102,7 @@ namespace WebAppProject.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(User user)
+        public ActionResult Edit(ApplicationUser user)
         {
             if (ModelState.IsValid)
             {
@@ -111,19 +111,19 @@ namespace WebAppProject.Controllers
                     var pic = string.Empty;
                     var folder = "~/Content/Images";
 
-                    if (user.Images != null)
+                    if (user.Pic != null)
                     {
-                        pic = ImageService.UploadPicture(user.Images, folder);
+                        pic = ImageService.UploadPicture(user.Pic, folder);
                         if (!string.IsNullOrEmpty(pic))
                         {
                             user.Image = string.Format("{0}/{1}", folder, pic);
                         }
                     }
-                    var db2 = new MySystemWebContext();
-                    var currentUsers = db2.Users.Find(user.UserId);
-                    if (currentUsers.UserEmail != user.UserEmail)
+                    var db2 = new ApplicationDbContext();
+                    var currentUsers = db2.Users.Find(user.Id);
+                    if (currentUsers.Email != user.Email)
                     {
-                        userServ.UpdateUser(user.UserEmail, user.UserEmail);
+                        userServ.UpdateUser(user.Email, user.Email);
                     }
                     db2.Dispose();
 
@@ -147,7 +147,7 @@ namespace WebAppProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            ApplicationUser user = db.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -161,10 +161,10 @@ namespace WebAppProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            User user = db.Users.Find(id);
+            ApplicationUser user = db.Users.Find(id);
             db.Users.Remove(user);
             db.SaveChanges();
-            userServ.DeleteUser(user.UserEmail);
+            userServ.DeleteUser(user.Email);
 
             return RedirectToAction("Index");
         }

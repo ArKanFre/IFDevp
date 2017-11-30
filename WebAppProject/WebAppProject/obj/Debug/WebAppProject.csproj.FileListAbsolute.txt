@@ -1,3 +1,4 @@
+C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\obj\Debug\WebAppProject.csproj.CoreCompileInputs.cache
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\ApplicationInsights.config
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\WebAppProject.dll.config
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\WebAppProject.dll
@@ -31,6 +32,8 @@ C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\Microsoft.Thr
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\Newtonsoft.Json.dll
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\Owin.dll
+C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\PagedList.dll
+C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\PagedList.Mvc.dll
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\SendGrid.SmtpApi.dll
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\SendGridMail.dll
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\System.Web.Helpers.dll
@@ -46,6 +49,8 @@ C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\Microsoft.Thr
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\Microsoft.Threading.Tasks.Extensions.xml
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\Microsoft.Threading.Tasks.Extensions.Desktop.xml
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\Newtonsoft.Json.xml
+C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\PagedList.xml
+C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\PagedList.Mvc.xml
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\System.Web.Helpers.xml
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\System.Web.Mvc.xml
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\System.Web.Optimization.xml
@@ -90,11 +95,5 @@ C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\pt-br\Microso
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\pt-br\Microsoft.Owin.Security.Google.resources.dll
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\pt-br\Microsoft.Owin.Security.Twitter.resources.dll
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\pt-br\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\obj\Debug\WebAppProject.csproj.CoreCompileInputs.cache
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\obj\Debug\WebAppProject.dll
 C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\obj\Debug\WebAppProject.pdb
-C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\PagedList.dll
-C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\PagedList.Mvc.dll
-C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\PagedList.xml
-C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\bin\PagedList.Mvc.xml
-C:\Users\Arion\source\repos\IFDevp\WebAppProject\WebAppProject\obj\Debug\WebAppProject.csprojResolveAssemblyReference.cache

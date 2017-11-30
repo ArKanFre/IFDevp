@@ -57,7 +57,7 @@ namespace WebAppProject.Models
           evitando que a aplicação execute os dados o tempo todo e fique
           sobrecarregada */
         [NotMapped]
-        public virtual ICollection<DetailsOrder> Detalhes { get; set; }
+        public virtual ICollection<OrderDetails> Detalhes { get; set; }
 
     }
 }

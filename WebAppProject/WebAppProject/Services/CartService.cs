@@ -7,7 +7,7 @@ namespace WebAppProject.Services
      * https://pt.stackoverflow.com/questions/158423/cria%C3%A7%C3%A3o-de-um-carrinho-de-compras
      * E https://pt.stackoverflow.com/questions/40857/implementa%C3%A7%C3%A3o-de-carrinho-de-compras-em-asp-net-mvc
      */
-    public class CarrinhoComprasService
+    public class CartService
     {
         const string CHAVE_PEDIDOS = "CarrinhoWebApp";
         MySystemWebContext db = new MySystemWebContext();

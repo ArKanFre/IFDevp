@@ -9,8 +9,7 @@ namespace WebAppProject.Services
     public class UsersServices : IDisposable
     {
         private static ApplicationDbContext userContext = new ApplicationDbContext();
-        private static MySystemWebContext myContext = new MySystemWebContext();
-
+        
         /*
          * ADICIONANDO PERMISSÃO AO SUPER USUÁRIO
          
@@ -58,8 +57,7 @@ namespace WebAppProject.Services
 
             var userASP = new ApplicationUser
             {
-                Email = email,
-                UserName = email
+                Email = email
             };
 
             userManager.Create(userASP, pass);
@@ -84,7 +82,6 @@ namespace WebAppProject.Services
         public void Dispose()
         {
             userContext.Dispose();
-            myContext.Dispose();
         }
 
         public bool DeleteUser(string userEmail)

@@ -1,0 +1,72 @@
+﻿@using WebAppProject.Models;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="glyphicon glyphicon-shopping-cart"></h2>
+@{
+    if (Session["Cart"] == null)
+    {
+        <h1>A página não contém nenhum produto selecionado!</h1>
+    }
+    else
+    {
+        <table id="cartTable" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Sub total</th>
+                </tr>
+            </thead>
+
+            @foreach (var cart in (List<OrderDetails>)Session["Cart"])
+            {
+                <tbody>
+                    <tr>
+                        <td>@cart.Produto.Nome</td>
+                        <td>@cart.Produto.Preco</td>
+                        <td>@cart.Quantity</td>
+                        <!-- FAZENDO O CÁLCULO DO SUBTOTAL -->
+                        <td>@(String.Format("{0:N0}", cart.Produto.Preco * cart.Quantity))</td>
+                        <td>
+                            @Html.ActionLink(" ", "Delete", "Cart", new { id = cart.Produto.Id },
+                            new
+                            {
+                                onclick = "return confirm ('Você tem certeza que quer retirar este item?);",
+                                @class = "btn btn-danger glyphicon glyphicon-trash"
+                            })
+                        </td>
+                    </tr>
+
+                    }
+
+                    <tr>
+                        <td colspan="3">Total:</td>
+                        <td>
+                            @{
+                                List<OrderDetails> temp = (List<OrderDetails>)Session["Cart"];
+                                var total = String.Format("{0:N0}", temp.Sum(c => c.Quantity * c.Produto.Preco));
+                            }
+
+                            R$ @total
+                        </td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+        <br />
+        @Html.ActionLink("Você quer continuar?", "Produtos", "Products")
+    }
+}
+
+@* Parte do script para DataTables *@
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#cartTable').DataTable();
+        });
+    </script>
+}

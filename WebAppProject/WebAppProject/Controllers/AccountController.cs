@@ -151,9 +151,8 @@ namespace WebAppProject.Controllers
             {
                 var user = new ApplicationUser
                 {
-                    Nome = model.Nome,
                     NickName = model.Nickname,
-                    UserName = model.Email,
+                    UserName = model.Nome,
                     Email = model.Email
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);

@@ -26,7 +26,7 @@ namespace WebAppProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DetailsOrder detailsOrder = db.DetailsOrders.Find(id);
+            OrderDetails detailsOrder = db.DetailsOrders.Find(id);
             if (detailsOrder == null)
             {
                 return HttpNotFound();
@@ -47,7 +47,7 @@ namespace WebAppProject.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdDetailsOrder,DataPagamento,IdProduct,IdOrder")] DetailsOrder detailsOrder)
+        public ActionResult Create([Bind(Include = "IdDetailsOrder,DataPagamento,IdProduct,IdOrder")] OrderDetails detailsOrder)
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +68,7 @@ namespace WebAppProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DetailsOrder detailsOrder = db.DetailsOrders.Find(id);
+            OrderDetails detailsOrder = db.DetailsOrders.Find(id);
             if (detailsOrder == null)
             {
                 return HttpNotFound();
@@ -83,7 +83,7 @@ namespace WebAppProject.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdDetailsOrder,DataPagamento,IdProduct,IdOrder")] DetailsOrder detailsOrder)
+        public ActionResult Edit([Bind(Include = "IdDetailsOrder,DataPagamento,IdProduct,IdOrder")] OrderDetails detailsOrder)
         {
             if (ModelState.IsValid)
             {
@@ -103,7 +103,7 @@ namespace WebAppProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DetailsOrder detailsOrder = db.DetailsOrders.Find(id);
+            OrderDetails detailsOrder = db.DetailsOrders.Find(id);
             if (detailsOrder == null)
             {
                 return HttpNotFound();
@@ -116,7 +116,7 @@ namespace WebAppProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            DetailsOrder detailsOrder = db.DetailsOrders.Find(id);
+            OrderDetails detailsOrder = db.DetailsOrders.Find(id);
             db.DetailsOrders.Remove(detailsOrder);
             db.SaveChanges();
             return RedirectToAction("Index");

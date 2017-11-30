@@ -5,20 +5,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebAppProject.Models
 {
-    public class DetailsOrder
+    public class OrderDetails
     {
         [Key]
         public int IdDetailsOrder { get; set; }
         
-        [Required(ErrorMessage = "O campo da data de pagamento é obrigatório!")]
-        [DataType(DataType.DateTime)]
-        public string DataPagamento { get; set; }
-
         [DisplayName("Preço")]
         public double Price { get; set; }
 
+        [DefaultValue(1)]
+        [Range(1, Int32.MaxValue, ErrorMessage = "Não existe quantidade de produto negativa ou zerada!")]
         [DisplayName("Quantidade")]
-        [Range(0, Int32.MaxValue, ErrorMessage = "Não existe quantidade de produto negativa!")]
         public int Quantity { get; set; }
 
         /* ATRIBUTOS QUE SERVIRÃO PARA O RELACIONAMENTO ENTRE OUTRAS
@@ -33,5 +30,16 @@ namespace WebAppProject.Models
 
         [ForeignKey("IdOrder")]
         public virtual Order Pedido { get; set; }
+
+        /* CONSTRUTORES */
+        public OrderDetails()
+        { }
+
+        public OrderDetails(Product prod, int quantity)
+        {
+            Produto = prod;
+            Quantity = quantity;
+        }
+
     }
 }

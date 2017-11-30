@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebAppProject.Models.User>
+﻿@model IEnumerable<WebAppProject.Models.ApplicationUser>
 
 @{
     ViewBag.Title = "Index";
@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table id="userTable" class="table table-bordered" cellspacing="0">
+<table id="userTable" class="table table-bordered">
     <thead>
         <tr>
             <th>
@@ -19,10 +19,10 @@
                 @Html.DisplayNameFor(model => model.UserName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DataNasc)
+                @Html.DisplayNameFor(model => model.DtNasc)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UserEmail)
+                @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Image)
@@ -41,10 +41,10 @@
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DataNasc)
+                @Html.DisplayFor(modelItem => item.DtNasc)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UserEmail)
+                @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
                 @if (!string.IsNullOrEmpty(item.Image))
@@ -55,9 +55,9 @@
                 }
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.UserId }, htmlAttributes: new { @class = "btn btn-warning glyphicon glyphicon-pencil" })
-                @Html.ActionLink("Details", "Details", new { id = item.UserId }, htmlAttributes: new { @class = "btn btn-warning glyphicon glyphicon-plus" })
-                @Html.ActionLink("Delete", "Delete", new { id = item.UserId }, htmlAttributes: new { @class = "btn btn-warning glyphicon glyphicon-trash" })
+                @Html.ActionLink(" ", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-warning glyphicon glyphicon-pencil" })
+                @Html.ActionLink(" ", "Details", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-warning glyphicon glyphicon-plus" })
+                @Html.ActionLink(" ", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-warning glyphicon glyphicon-trash" })
             </td>
         </tr>
     </tbody>

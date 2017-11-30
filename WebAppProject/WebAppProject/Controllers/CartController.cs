@@ -25,23 +25,23 @@ namespace WebAppProject.Controllers
             }
             if (Session[strCart] == null)
             {
-                List<Cart> lsCart = new List<Cart>
+                List<OrderDetails> lsCart = new List<OrderDetails>
                 {
-                    new Cart(db.Products.Find(id),1)                     
+                    new OrderDetails(db.Products.Find(id), 1)                     
                 };
                 Session[strCart] = lsCart;
             }
             else
             {
-                List<Cart> lsCart = (List<Cart>)Session[strCart];
+                List<OrderDetails> lsCart = (List<OrderDetails>)Session[strCart];
                 int check = IsExistingCheck(id);
                 if (check == -1)
                 {
-                    lsCart.Add(new Cart(db.Products.Find(id), 1));
+                    lsCart.Add(new OrderDetails(db.Products.Find(id), 1));
                 }
                 else
                 {
-                    lsCart[check].Quantidade++;
+                    lsCart[check].Quantity++;
                 }
                 Session[strCart] = lsCart;
             }
@@ -50,7 +50,7 @@ namespace WebAppProject.Controllers
         
         private int IsExistingCheck(int? id)
         {
-            List<Cart> lsCart = (List<Cart>)Session[strCart];
+            List<OrderDetails> lsCart = (List<OrderDetails>)Session[strCart];
 
             for (int i = 0; i < lsCart.Count; i++)
             {
@@ -66,7 +66,7 @@ namespace WebAppProject.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             int check = IsExistingCheck(id);
-            List<Cart> lsCart = (List<Cart>)Session[strCart];
+            List<OrderDetails> lsCart = (List<OrderDetails>)Session[strCart];
             lsCart.RemoveAt(check);
 
             return View("Index");
@@ -75,11 +75,11 @@ namespace WebAppProject.Controllers
         public ActionResult UpdateCart(FormCollection form)
         {
             string[] quantities = form.GetValues("quantity");
-            List<Cart> lstCart = (List<Cart>)Session[strCart];
+            List<OrderDetails> lstCart = (List<OrderDetails>)Session[strCart];
 
             for (int i = 0; i < lstCart.Count; i++)
             {
-                lstCart[i].Quantidade = Convert.ToInt32(quantities[i]);
+                lstCart[i].Quantity = Convert.ToInt32(quantities[i]);
             }
             Session[strCart] = lstCart;
 
@@ -93,20 +93,21 @@ namespace WebAppProject.Controllers
 
         public ActionResult ProcessOrder(FormCollection form)
         {
-            List<Cart> lstCart = (List<Cart>)Session[strCart];
+            List<OrderDetails> lstCart = (List<OrderDetails>)Session[strCart];
 
             // 1 - Salvar na taela Pedidos
             Order pedido = new Order()
             {
-                DataPedido = DateTime.Now
+                DataPedido = DateTime.Now,
+                TpPagamento = "Debit Card"
             };
             db.Pedidos.Add(pedido);
             db.SaveChanges();
 
             // 2 - Salvar na tabela Detalhes dos Pedidos
-            foreach (Cart cart in lstCart)
+            foreach (OrderDetails cart in lstCart)
             {
-                DetailsOrder orderDetail = new DetailsOrder()
+                OrderDetails orderDetail = new OrderDetails()
                 {
                     IdOrder = pedido.Id,
                     IdProduct = cart.Produto.Id,
