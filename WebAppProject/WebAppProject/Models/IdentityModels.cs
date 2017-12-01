@@ -5,9 +5,6 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Web;
 using System.ComponentModel;
-using System.Data.Entity;
-using System.ComponentModel.DataAnnotations;
-using System;
 
 namespace WebAppProject.Models
 {
@@ -16,10 +13,6 @@ namespace WebAppProject.Models
     {
         [DisplayName("Apelido")]
         public string NickName { get; set; }
-
-        [DisplayName("Data Nascimento")]
-        [DataType(DataType.Date)]
-        public DateTime DtNasc { get; set; }
 
         [DisplayName("Foto do Usuário")]
         public string Image { get; set; }
@@ -41,9 +34,7 @@ namespace WebAppProject.Models
     {        
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
-        {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
-        }
+        { }
 
         public static ApplicationDbContext Create()
         {

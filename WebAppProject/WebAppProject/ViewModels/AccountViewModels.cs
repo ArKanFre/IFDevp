@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace WebAppProject.ViewModels
 {
@@ -69,9 +70,13 @@ namespace WebAppProject.ViewModels
         public string Nome { get; set; }
 
         [Required]
-        [Display(Name = "Nickname")]
+        [Display(Name = "Apelido")]
         public string Nickname { get; set; }
-                
+
+        [Display(Name = "Foto do Usuário")]
+        [DataType(DataType.ImageUrl)]
+        public HttpPostedFileBase Pic { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

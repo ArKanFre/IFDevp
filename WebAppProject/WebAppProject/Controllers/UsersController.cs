@@ -119,14 +119,6 @@ namespace WebAppProject.Controllers
                             user.Image = string.Format("{0}/{1}", folder, pic);
                         }
                     }
-                    var db2 = new ApplicationDbContext();
-                    var currentUsers = db2.Users.Find(user.Id);
-                    if (currentUsers.Email != user.Email)
-                    {
-                        userServ.UpdateUser(user.Email, user.Email);
-                    }
-                    db2.Dispose();
-
                     db.Entry(user).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -164,7 +156,6 @@ namespace WebAppProject.Controllers
             ApplicationUser user = db.Users.Find(id);
             db.Users.Remove(user);
             db.SaveChanges();
-            userServ.DeleteUser(user.Email);
 
             return RedirectToAction("Index");
         }

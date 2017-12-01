@@ -9,23 +9,6 @@ namespace WebAppProject.Services
     public class UsersServices : IDisposable
     {
         private static ApplicationDbContext userContext = new ApplicationDbContext();
-        
-        /*
-         * ADICIONANDO PERMISSÃO AO SUPER USUÁRIO
-         
-        public void AddRolesSuperUser()
-        {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(userContext));
-            var user = userManager.FindByEmail(WebConfigurationManager.AppSettings["emailSuperUser"]);
-            //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
-
-            // Verificando se o usuário não possui acesso restrito
-            if (!userManager.IsInRole(user.Id, "Admin"))
-            {
-                userManager.AddToRole(user.Id, "Admin");
-            }
-
-        } */
 
         /*
          * MÉTODO QUE FAZ A VERIFICAÇÃO DO SUPER USUÁRIO
@@ -45,7 +28,6 @@ namespace WebAppProject.Services
             }
 
             userManager.AddToRole(user.Id, "Admin");
-
         }
 
         /*
@@ -53,15 +35,23 @@ namespace WebAppProject.Services
          */
         public void CreateUserAsp(string email, string roleName, string pass)
         {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(userContext));
-
-            var userASP = new ApplicationUser
+            try
             {
-                Email = email
-            };
+                var store = new UserStore<ApplicationUser>(userContext);
+                var userManager = new ApplicationUserManager(store);
 
-            userManager.Create(userASP, pass);
-            userManager.AddToRole(userASP.Id, roleName);
+                var userASP = new ApplicationUser
+                {
+                    Email = email
+                };
+
+                userManager.Create(userASP, pass);
+                userManager.AddToRole(userASP.Id, roleName);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         /*
@@ -83,37 +73,5 @@ namespace WebAppProject.Services
         {
             userContext.Dispose();
         }
-
-        public bool DeleteUser(string userEmail)
-        {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(userContext));
-            var user = userManager.FindByEmail(userEmail);
-
-            if (user == null)
-            {
-                return false;
-            }
-
-            var response = userManager.Delete(user);
-
-            return response.Succeeded;
-        }
-
-        public bool UpdateUser(string userEmail, string userName)
-        {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(userContext));
-            var user = userManager.FindByEmail(userEmail);
-
-            if (user == null)
-            {
-                return false;
-            }
-            user.Email = userEmail;
-            user.UserName = userName;
-            var response = userManager.Update(user);
-
-            return response.Succeeded;
-        }
-
     }
 }

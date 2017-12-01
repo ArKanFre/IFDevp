@@ -27,32 +27,28 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DataNasc)
+            @Html.DisplayNameFor(model => model.Email)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DataNasc)
+            @Html.DisplayFor(model => model.Email)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.UserEmail)
+            @Html.DisplayNameFor(model => model.Image)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.UserEmail)
-        </dd>
-
-        <dt>
             @if (!string.IsNullOrEmpty(Model.Image))
             {
                 <img src="@Url.Content(Model.Image)" alt="Image"
-                     style="width:50px; height:50px;
+                     style="width:100px; height:100px;
 		                max-width: 100%; height: auto;" />
             }
-        </dt>
+        </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(" ", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-warning glyphicon glyphicon-edit" })
+    @Html.ActionLink(" ", "Index", null, htmlAttributes: new {@class = "btn btn-default glyphicon glyphicon-backward" })
 </p>

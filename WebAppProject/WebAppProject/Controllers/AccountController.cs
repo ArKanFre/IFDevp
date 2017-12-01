@@ -153,7 +153,8 @@ namespace WebAppProject.Controllers
                 {
                     NickName = model.Nickname,
                     UserName = model.Nome,
-                    Email = model.Email
+                    Email = model.Email,
+                    Pic = model.Pic
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
